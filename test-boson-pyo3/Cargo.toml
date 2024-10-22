@@ -1,0 +1,21 @@
+[package]
+name = "test-boson-pyo3"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "test_boson_pyo3"
+# "cdylib" is necessary to produce a shared library for Python to import from.
+#
+# Downstream Rust code (including code in `bin/`, `examples/`, and `tests/`) will not be able
+# to `use test_boson;` unless the "rlib" or "lib" crate type is also included, e.g.:
+# crate-type = ["cdylib", "rlib"]
+crate-type = ["cdylib"]
+
+[dependencies]
+# local
+test-boson-core = { path = "../test-boson-core" }
+
+[dependencies.pyo3]
+version = "0.22.5"
+features = ["extension-module"]
